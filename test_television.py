@@ -93,9 +93,10 @@ def test_on_mute_volume_up():
 def test_on_volume_past_max():
     tv = Television()
     tv.power()
-    for i in range(500):
-        tv.volume_up()
-    assert str(tv) == "Power = True, Channel = 0, Volume = 100"
+    tv.volume_up()
+    tv.volume_up()
+    tv.volume_up()
+    assert str(tv) == "Power = True, Channel = 0, Volume = 2"
 
 def test_off_volume_down():
     tv = Television()
@@ -105,10 +106,10 @@ def test_off_volume_down():
 def test_on_volume_down():
     tv = Television()
     tv.power()
-    for i in range(100):
-        tv.volume_up()
+    tv.volume_up()
+    tv.volume_up()
     tv.volume_down()
-    assert str(tv) == "Power = True, Channel = 0, Volume = 99"
+    assert str(tv) == "Power = True, Channel = 0, Volume = 1"
 
 def test_on_mute_volume_down():
     tv = Television()
@@ -120,6 +121,6 @@ def test_on_mute_volume_down():
 def test_on_volume_past_min():
     tv = Television()
     tv.power()
-    for i in range(500):
-        tv.volume_down()
+    tv.volume_down()
+    tv.volume_down()
     assert str(tv) == "Power = True, Channel = 0, Volume = 0"
